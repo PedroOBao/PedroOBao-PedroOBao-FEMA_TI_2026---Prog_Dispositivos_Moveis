@@ -37,7 +37,7 @@ export default function InicioScreen({ navigation }) {
                     Boa noite Pedro!
                 </Text>
 
-                <Text className="text-xl text-branco text-cinza">
+                <Text className="text-xl text-cinza">
                     Treino de hoje
                 </Text>
 

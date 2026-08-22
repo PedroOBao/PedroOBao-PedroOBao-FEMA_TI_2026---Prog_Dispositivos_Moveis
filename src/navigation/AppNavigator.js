@@ -1,13 +1,14 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import { House, ShoppingBag, User } from 'lucide-react-native';
+import { House, ShoppingBag, User, Layers } from 'lucide-react-native';
 
 import InicioScreen from '../screens/InicioScreen.js';
 import ProdutosScreen from '../screens/ProdutosScreen.js';
 import PerfilScreen from '../screens/PerfilScreen.js';
 import DetalhesScreen from '../screens/DetalhesScreen.js';
 import SignPage from '../screens/SignPage.js';
+import Central from '../screens/Central.js';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -53,11 +54,11 @@ function Tabs() {
             />
 
             <Tab.Screen
-                name="SignPage"
-                component={SignPage}
+                name="Central"
+                component={Central}
                 options={{
                     tabBarIcon: ({ color, size }) => (
-                        <ShoppingBag size={size} color={color} />
+                        <Layers size={size} color={color} />
                     ),
                 }}
             />
@@ -88,6 +89,12 @@ export default function AppNavigator() {
                 name="Detalhes"
                 component={DetalhesScreen}
                 options={{ title: 'Detalhes do produto' }}
+            />
+
+            <Stack.Screen
+                name="SignPage"
+                component={SignPage}
+                options={{ headerShown: false }}
             />
         </Stack.Navigator>
     );
