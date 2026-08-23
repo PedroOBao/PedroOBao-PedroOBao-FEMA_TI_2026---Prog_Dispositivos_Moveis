@@ -1,14 +1,18 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import { House, ShoppingBag, User, Layers } from 'lucide-react-native';
+import { Dumbbell, House, TrendingUp, User } from 'lucide-react-native';
 
 import InicioScreen from '../screens/InicioScreen.js';
-import ProdutosScreen from '../screens/ProdutosScreen.js';
 import PerfilScreen from '../screens/PerfilScreen.js';
 import DetalhesScreen from '../screens/DetalhesScreen.js';
 import SignPage from '../screens/SignPage.js';
-import Central from '../screens/Central.js';
+import LoginScreen from '../screens/LoginScreen.js';
+import CadastroScreen from '../screens/CadastroScreen.js';
+import ProgressoScreen from '../screens/ProgressoScreen.js';
+import CriarTreinoScreen from '../screens/CriarTreinoScreen.js';
+import TreinosScreen from '../screens/TreinosScreen.js';
+import TreinoDetalhesScreen from '../screens/TreinoDetalhesScreen.js';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -44,21 +48,21 @@ function Tabs() {
             />
 
             <Tab.Screen
-                name="Produtos"
-                component={ProdutosScreen}
+                name="Treinos"
+                component={TreinosScreen}
                 options={{
                     tabBarIcon: ({ color, size }) => (
-                        <ShoppingBag size={size} color={color} />
+                        <Dumbbell size={size} color={color} />
                     ),
                 }}
             />
 
             <Tab.Screen
-                name="Central"
-                component={Central}
+                name="Progresso"
+                component={ProgressoScreen}
                 options={{
                     tabBarIcon: ({ color, size }) => (
-                        <Layers size={size} color={color} />
+                        <TrendingUp size={size} color={color} />
                     ),
                 }}
             />
@@ -78,10 +82,28 @@ function Tabs() {
 
 export default function AppNavigator() {
     return (
-        <Stack.Navigator>
+        <Stack.Navigator initialRouteName="SignPage">
             <Stack.Screen
                 name="Tabs"
                 component={Tabs}
+                options={{ headerShown: false }}
+            />
+
+            <Stack.Screen
+                name="SignPage"
+                component={SignPage}
+                options={{ headerShown: false }}
+            />
+
+            <Stack.Screen
+                name="Login"
+                component={LoginScreen}
+                options={{ headerShown: false }}
+            />
+
+            <Stack.Screen
+                name="Cadastro"
+                component={CadastroScreen}
                 options={{ headerShown: false }}
             />
 
@@ -92,9 +114,21 @@ export default function AppNavigator() {
             />
 
             <Stack.Screen
-                name="SignPage"
-                component={SignPage}
-                options={{ headerShown: false }}
+                name="CriarTreino"
+                component={CriarTreinoScreen}
+                options={{ title: 'Criar treino', headerStyle: { backgroundColor: '#222222' }, headerTintColor: '#FFF9FA' }}
+            />
+
+            <Stack.Screen
+                name="Treinos"
+                component={TreinosScreen}
+                options={{ title: 'Meus treinos', headerStyle: { backgroundColor: '#222222' }, headerTintColor: '#FFF9FA' }}
+            />
+
+            <Stack.Screen
+                name="TreinoDetalhes"
+                component={TreinoDetalhesScreen}
+                options={{ title: 'Elementos do treino', headerStyle: { backgroundColor: '#222222' }, headerTintColor: '#FFF9FA' }}
             />
         </Stack.Navigator>
     );
