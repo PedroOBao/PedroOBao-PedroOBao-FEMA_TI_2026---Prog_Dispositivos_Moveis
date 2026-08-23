@@ -13,6 +13,7 @@ import ProgressoScreen from '../screens/ProgressoScreen.js';
 import CriarTreinoScreen from '../screens/CriarTreinoScreen.js';
 import TreinosScreen from '../screens/TreinosScreen.js';
 import TreinoDetalhesScreen from '../screens/TreinoDetalhesScreen.js';
+import { useAuth } from '../context/AuthContext';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -81,29 +82,33 @@ function Tabs() {
 }
 
 export default function AppNavigator() {
+    const { user } = useAuth();
+
     return (
-        <Stack.Navigator initialRouteName="SignPage">
+        <Stack.Navigator key={user ? 'app' : 'auth'} initialRouteName={user ? 'Tabs' : 'SignPage'}>
+            {!user ? (
+                <>
+                    <Stack.Screen
+                        name="SignPage"
+                        component={SignPage}
+                        options={{ headerShown: false }}
+                    />
+                    <Stack.Screen
+                        name="Login"
+                        component={LoginScreen}
+                        options={{ headerShown: false }}
+                    />
+                    <Stack.Screen
+                        name="Cadastro"
+                        component={CadastroScreen}
+                        options={{ headerShown: false }}
+                    />
+                </>
+            ) : (
+                <>
             <Stack.Screen
                 name="Tabs"
                 component={Tabs}
-                options={{ headerShown: false }}
-            />
-
-            <Stack.Screen
-                name="SignPage"
-                component={SignPage}
-                options={{ headerShown: false }}
-            />
-
-            <Stack.Screen
-                name="Login"
-                component={LoginScreen}
-                options={{ headerShown: false }}
-            />
-
-            <Stack.Screen
-                name="Cadastro"
-                component={CadastroScreen}
                 options={{ headerShown: false }}
             />
 
@@ -130,6 +135,8 @@ export default function AppNavigator() {
                 component={TreinoDetalhesScreen}
                 options={{ title: 'Elementos do treino', headerStyle: { backgroundColor: '#222222' }, headerTintColor: '#FFF9FA' }}
             />
+                </>
+            )}
         </Stack.Navigator>
     );
 }

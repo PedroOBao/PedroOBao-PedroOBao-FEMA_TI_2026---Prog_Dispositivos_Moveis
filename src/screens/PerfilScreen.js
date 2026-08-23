@@ -10,7 +10,7 @@ export default function PerfilScreen({ navigation }) {
     function handleSignOut() {
         Alert.alert('Sair da conta?', 'Você poderá entrar novamente quando quiser.', [
             { text: 'Cancelar', style: 'cancel' },
-            { text: 'Sair', style: 'destructive', onPress: () => { signOut(); navigation.getParent()?.getParent()?.replace('Cadastro'); } },
+            { text: 'Sair', style: 'destructive', onPress: signOut },
         ]);
     }
     

@@ -16,8 +16,11 @@ export default function LoginScreen({ navigation }) {
             return;
         }
 
-        signIn(email);
-        navigation.replace('Tabs');
+        const result = signIn(email, password);
+
+        if (!result.success) {
+            Alert.alert('Não foi possível entrar', result.message);
+        }
     }
 
     return (

@@ -17,8 +17,7 @@ export default function CadastroScreen({ navigation }) {
             return;
         }
 
-        signUp({ name, email });
-        navigation.replace('Tabs');
+        signUp({ name, email, password });
     }
 
     return (
